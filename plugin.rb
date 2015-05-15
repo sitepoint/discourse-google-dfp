@@ -3,8 +3,6 @@
 # version: 0.1
 # authors: Neil Lalonde
 
-register_asset "javascripts/discourse/initializers/discourse-google-dfp.js.es6"
-
 register_css <<CSS
 
 .google-dfp-ad {

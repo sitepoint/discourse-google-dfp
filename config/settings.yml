@@ -2,7 +2,6 @@ google_dfp_plugin:
   dfp_id:
     client: true
     default: ''
-    # 158419374
 
   dfp_show_topic_list_top:
     client: true
