@@ -1,0 +1,10 @@
+en:
+  site_settings:
+    dfp_id: "Your Google DFP ID. (For example, 158419374)"
+    dfp_show_topic_list_top: "Show 728x90 leaderboard ad above topic lists."
+    dfp_topic_list_top_code: "The code of the ad unit that should appear above topic lists."
+    dfp_show_topic_top: "Show 728x90 leaderboard ad above the first post of a topic."
+    dfp_topic_top_code: "The code of the ad unit that should appear above the first post of a topic."
+    dfp_show_topic_bottom: "Show 728x90 leaderboard ad below the last post of a topic."
+    dfp_topic_bottom_code: "The code of the ad unit that should appear below the last post of a topic."
+
