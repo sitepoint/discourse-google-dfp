@@ -24,6 +24,23 @@ google_dfp_plugin:
     client: true
     default: ''
 
-  # dfp_show_topic_list_top_mobile:
-  # dfp_show_topic_top_mobile:
-  # dfp_show_topic_bottom_mobile:
+  dfp_mobile_show_topic_list_top:
+    client: true
+    default: false
+  dfp_mobile_topic_list_top_code:
+    client: true
+    default: ''
+
+  dfp_mobile_show_topic_top:
+    client: true
+    default: false
+  dfp_mobile_topic_top_code:
+    client: true
+    default: ''
+
+  dfp_mobile_show_topic_bottom:
+    client: true
+    default: false
+  dfp_mobile_topic_bottom_code:
+    client: true
+    default: ''
