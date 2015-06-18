@@ -5,7 +5,7 @@ var _loaded = false,
     mobileSizes = [320, 50],
     desktopSizes = [[728, 90], [970, 90]];
 
-function loadGoogle(settings) {
+function loadGoogle(settings, targets) {
   if (_loaded) {
     return Ember.RSVP.resolve();
   }
@@ -44,6 +44,11 @@ function loadGoogle(settings) {
           googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_topic_bottom_code, desktopSizes, 'div-gpt-ad-topic-bottom').addService(googletag.pubads());
         }
       }
+
+      for (var name in targets) {
+        googletag.pubads().setTargeting(name, targets[name]);
+      }
+
       googletag.pubads().enableSingleRequest();
       googletag.enableServices();
     });
@@ -62,16 +67,22 @@ export default Ember.Component.extend({
 
   fixedSize: function() {
     if (Discourse.Mobile.mobileView) {
-      var size = 'height: 50px;';
+      var size = "height: 50px";
     } else {
-      var size = 'height: 90px;';
+      var size = "height: 90px";
     }
     return size.htmlSafe();
   }.property(),
 
+  targets: function() {
+    return {
+      channel: this.get('category') && this.get('category').slug
+    };
+  }.property('category'),
+
   _initGoogleDFP: function() {
     var self = this;
-    loadGoogle(Discourse.SiteSettings).then(function() {
+    loadGoogle(Discourse.SiteSettings, self.get('targets')).then(function() {
       self.set('loadedGoogletag', true);
     });
   }.on('didInsertElement')
