@@ -1,9 +1,9 @@
 {{#if site.mobileView}}
   {{#if siteSettings.dfp_mobile_show_topic_list_top}}
-    {{google-dfp-ad placement="topic-list-top"}}
+    {{google-dfp-ad placement="topic-list-top" category=category}}
   {{/if}}
 {{else}}
   {{#if siteSettings.dfp_show_topic_list_top}}
-    {{google-dfp-ad placement="topic-list-top"}}
+    {{google-dfp-ad placement="topic-list-top" category=category}}
   {{/if}}
 {{/if}}
