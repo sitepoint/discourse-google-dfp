@@ -1,7 +1,9 @@
 import loadScript from 'discourse/lib/load-script';
 
 var _loaded = false,
-    _promise = null;
+    _promise = null,
+    mobileSizes = [320, 50],
+    desktopSizes = [[728, 90], [970, 90]];
 
 function loadGoogle(settings) {
   if (_loaded) {
@@ -23,23 +25,23 @@ function loadGoogle(settings) {
     googletag.cmd.push(function() {
       if (Discourse.Mobile.mobileView) {
         if (settings.dfp_mobile_show_topic_list_top && settings.dfp_mobile_topic_list_top_code) {
-          googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_mobile_topic_list_top_code, [320, 50], 'div-gpt-ad-topic-list-top').addService(googletag.pubads());
+          googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_mobile_topic_list_top_code, mobileSizes, 'div-gpt-ad-topic-list-top').addService(googletag.pubads());
         }
         if (settings.dfp_mobile_show_topic_top && settings.dfp_mobile_topic_top_code) {
-          googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_mobile_topic_top_code, [320, 50], 'div-gpt-ad-topic-top').addService(googletag.pubads());
+          googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_mobile_topic_top_code, mobileSizes, 'div-gpt-ad-topic-top').addService(googletag.pubads());
         }
         if (settings.dfp_mobile_show_topic_bottom && settings.dfp_mobile_topic_bottom_code) {
-          googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_mobile_topic_bottom_code, [320, 50], 'div-gpt-ad-topic-bottom').addService(googletag.pubads());
+          googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_mobile_topic_bottom_code, mobileSizes, 'div-gpt-ad-topic-bottom').addService(googletag.pubads());
         }
       } else {
         if (settings.dfp_show_topic_list_top && settings.dfp_topic_list_top_code) {
-          googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_topic_list_top_code, [728, 90], 'div-gpt-ad-topic-list-top').addService(googletag.pubads());
+          googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_topic_list_top_code, desktopSizes, 'div-gpt-ad-topic-list-top').addService(googletag.pubads());
         }
         if (settings.dfp_show_topic_top && settings.dfp_topic_top_code) {
-          googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_topic_top_code, [728, 90], 'div-gpt-ad-topic-top').addService(googletag.pubads());
+          googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_topic_top_code, desktopSizes, 'div-gpt-ad-topic-top').addService(googletag.pubads());
         }
         if (settings.dfp_show_topic_bottom && settings.dfp_topic_bottom_code) {
-          googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_topic_bottom_code, [728, 90], 'div-gpt-ad-topic-bottom').addService(googletag.pubads());
+          googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_topic_bottom_code, desktopSizes, 'div-gpt-ad-topic-bottom').addService(googletag.pubads());
         }
       }
       googletag.pubads().enableSingleRequest();
@@ -60,10 +62,11 @@ export default Ember.Component.extend({
 
   fixedSize: function() {
     if (Discourse.Mobile.mobileView) {
-      return 'width: 320px; height: 50px;';
+      var size = 'height: 50px;';
     } else {
-      return 'width: 728px; height: 90px;';
+      var size = 'height: 90px;';
     }
+    return size.htmlSafe();
   }.property(),
 
   _initGoogleDFP: function() {

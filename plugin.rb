@@ -9,6 +9,7 @@ register_css <<CSS
   padding: 3px;
   margin-bottom: 10px;
   clear: both;
+  text-align: center;
 }
 
 .google-dfp-ad  .dfp-ad-unit {
