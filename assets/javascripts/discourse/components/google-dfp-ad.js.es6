@@ -23,7 +23,7 @@ function loadGoogle(settings, targets) {
 
     // Define our ad units
     googletag.cmd.push(function() {
-      if (Discourse.Mobile.mobileView) {
+      if (Discourse.Site.currentProp('mobileView')) {
         if (settings.dfp_mobile_show_topic_list_top && settings.dfp_mobile_topic_list_top_code) {
           googletag.defineSlot('/' + settings.dfp_id + '/' + settings.dfp_mobile_topic_list_top_code, mobileSizes, 'div-gpt-ad-topic-list-top').addService(googletag.pubads());
         }
@@ -66,7 +66,7 @@ export default Ember.Component.extend({
   }.property('placement'),
 
   fixedSize: function() {
-    if (Discourse.Mobile.mobileView) {
+    if (this.site.mobileView) {
       var size = "height: 50px";
     } else {
       var size = "height: 90px";
